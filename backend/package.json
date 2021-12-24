@@ -1,0 +1,9 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "login/account handling backend",
+  "main": "server.ts",
+  "repository": "https://github.com/RavenDuffy/Devops-MVP",
+  "author": "Raven",
+  "license": "MIT"
+}
