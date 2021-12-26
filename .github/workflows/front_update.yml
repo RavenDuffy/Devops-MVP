@@ -1,0 +1,51 @@
+name: Frontend Update
+
+on: push:
+  branches:
+    - main
+  pull_request:
+    branches: [main]
+    types: [open, synchronize]
+
+jobs:
+  staging_pipe:
+  runs-on: ubuntu-latest
+  defaults:
+    run:
+      working-directory: ./frontend
+  steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '17.x'
+    - name: yarn install
+      run: rm -rf node_modules && yarn install --frozen-lockfile
+    # - name: lint
+    #   run: yarn lint
+    - name: build
+      run: yarn build
+    # - name: test
+    #   uses: cypress-io/github-action@v2
+    #   with:
+    #     working-directory: ./frontend
+    #     command: yarn cypress:e2e
+    #     start: yarn start
+    #     wait-on: http://localhost:3000
+  # deploy_pipe:
+  #   needs: staging_pipe
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.event_name == 'push' }}
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: docker login
+  #       uses: docker/login-action@v1
+  #       with:
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
+  #     - name: docker build
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         context: ./frontend
+  #         file: ./frontend/Dockerfile
+  #         push: true
+  #         tags: magpiedocker/devops:latest
