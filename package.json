@@ -12,7 +12,7 @@
     "prettier:check": "prettier --check"
   },
   "lint-staged": {
-    "frontend/src/*.{ts,tsx}": [
+    "*.{ts,tsx}": [
       "yarn prettier:fix",
       "yarn eslint frontend/src"
     ]
