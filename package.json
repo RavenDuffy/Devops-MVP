@@ -1,13 +1,12 @@
 {
   "name": "devops-mvp",
   "dependencies": {
-    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
     "prettier": "^2.5.1"
   },
   "scripts": {
-    "lint": "eslint frontend/src",
     "prettier:fix": "prettier --write",
     "prettier:check": "prettier --check"
   },
