@@ -10,9 +10,10 @@
     "prettier:check": "prettier --check"
   },
   "lint-staged": {
-    "frontend/src/*.{ts, tsx}": [
+    "src/*.{ts, tsx}": [
       "yarn prettier:fix",
       "yarn lint"
     ]
-  }
+  },
+  "license": "MIT"
 }
