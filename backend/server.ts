@@ -12,6 +12,7 @@ server.set('trust_proxy', 1);
 server.get('/', (req, res) => {
   res.json({
     Welcome: req.ip,
+    Message: 'hello',
   });
 });
 
