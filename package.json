@@ -12,9 +12,10 @@
     "prettier:check": "prettier --check"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "**/!(node_modules|dist)/**/*.{ts,tsx}": [
       "yarn prettier:fix",
-      "yarn eslint frontend/src"
+      "yarn eslint frontend/src",
+      "yarn eslint backend"
     ]
   },
   "license": "MIT"
