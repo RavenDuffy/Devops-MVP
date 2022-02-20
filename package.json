@@ -9,7 +9,8 @@
   },
   "scripts": {
     "prettier:fix": "prettier --write",
-    "prettier:check": "prettier --check"
+    "prettier:check": "prettier --check",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "!(**/node_modules/**/*)*.{ts,tsx}": [
