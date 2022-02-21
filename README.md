@@ -12,3 +12,17 @@ In order to get everything working on GitHub a few things needed to be added:
    2. Require status checks to pass before merge
       1. Require branches to be up to date before merging
 2. [more soon]
+
+## Docker Commands
+
+```
+docker build -t do-front ./frontend/
+```
+
+Will build the frontend container with the tag do-front/latest
+
+```
+docker run --env-file ./.env -v ${pwd}\frontend\src:/app/src -d -p 3000:3000 --name front do-front
+```
+
+Will run the container with hot reloading (currently bugged [[1]](https://github.com/facebook/create-react-app/issues/12002) [[2]](https://github.com/facebook/create-react-app/issues/11879))
