@@ -15,14 +15,52 @@ In order to get everything working on GitHub a few things needed to be added:
 
 ## Docker Commands
 
+Builds the frontend container with the tag do-front/latest
+
 ```
-docker build -t do-front ./frontend/
+docker build -f ./frontend/Dockerfile.dev -t do-front ./frontend
 ```
 
-Will build the frontend container with the tag do-front/latest
+Runs the container with hot reloading
 
 ```
 docker run --env-file ./.env -v ${pwd}\frontend\src:/app/src -d -p 3000:3000 --name front do-front
 ```
 
-Will run the container with hot reloading (currently bugged [[1]](https://github.com/facebook/create-react-app/issues/12002) [[2]](https://github.com/facebook/create-react-app/issues/11879))
+Builds the frontend image using the production dockerfile
+
+```
+docker build -f ./frontend/Dockerfile.prod -t do-front-prod ./frontend
+```
+
+Builds the container for prod
+
+```
+docker run --env-file ./.env -d -p 80:80 --name front-prod do-front-prod
+```
+
+## Docker Compose Commands
+
+Runs all non-production commands previously listed (`--build` ensures changes to dockerfiles will be picked up)
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d --build
+```
+
+Runs all production commands previously listed (`--build` ensures changes to dockerfiles will be picked up)
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-prod.yml up -d --build
+```
+
+Closes all containers built using the develop command
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml down
+```
+
+Closes all containers built using the production command
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-prod.yml down
+```

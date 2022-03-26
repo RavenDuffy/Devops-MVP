@@ -1,0 +1,9 @@
+services:
+  do-front:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - '80:80'
+    volumes:
+      - ./frontend/src:/app/src
